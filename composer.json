@@ -2,7 +2,7 @@
 	"name": "gigitux/woo-test-environment",
 	"description": "A WP-CLI command for setting up a WooCommerce testing environment.",
 	"type": "wp-cli-package",
-	"homepage": "https://github.com/nielslange/woo-test-environment",
+	"homepage": "https://github.com/gigitux/woo-test-environment",
 	"license": "GPL-3.0-or-later",
 	"authors": [
 		{
