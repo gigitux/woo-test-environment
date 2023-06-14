@@ -246,53 +246,20 @@ class WooCommerce_Blocks_Testing_Environment extends WP_CLI_Command {
 	 * @return void
 	 */
 	private function setupPosts() {
-		// Create All Reviews post.
-		WP_CLI::runcommand( 'post create --post_status=publish --post_title=\'All Reviews\' --post_content=\'<!-- wp:woocommerce/all-reviews --><div class="wp-block-woocommerce-all-reviews wc-block-all-reviews has-image has-name has-date has-rating has-content has-product-name" data-image-type="reviewer" data-orderby="most-recent" data-reviews-on-page-load="10" data-reviews-on-load-more="10" data-show-load-more="true" data-show-orderby="true"></div><!-- /wp:woocommerce/all-reviews -->\'' );
+		$post_folder = dirname( __FILE__ ) . 'posts/';
+		$files       = scandir( $post_folder );
 
-		// Create Active Product Filters post.
-		if ( $this->attribute_ids['pa_color'] && $this->attribute_ids['pa_size'] ) {
-			WP_CLI::runcommand(
-				'post create --post_status=publish --post_title=\'Active Product Filters\' --post_content=\'<!-- wp:columns --><div class="wp-block-columns"><!-- wp:column {"width":"33.33%"} --><div class="wp-block-column" style="flex-basis:33.33%"><!-- wp:woocommerce/active-filters --><div class="wp-block-woocommerce-active-filters is-loading" data-display-style="list" data-heading="Active filters" data-heading-level="3"><span aria-hidden="true" class="wc-block-active-product-filters__placeholder"></span></div><!-- /wp:woocommerce/active-filters --><!-- wp:woocommerce/price-filter --><div class="wp-block-woocommerce-price-filter is-loading" data-showinputfields="true" data-showfilterbutton="false" data-heading="Filter by price" data-heading-level="3"><span aria-hidden="true" class="wc-block-product-categories__placeholder"></span></div><!-- /wp:woocommerce/price-filter --><!-- wp:woocommerce/attribute-filter {"attributeId":' . $this->attribute_ids['pa_color'] . ',"heading":"Filter by Color"} --><div class="wp-block-woocommerce-attribute-filter is-loading" data-attribute-id="' . $this->attribute_ids['pa_color'] . '" data-show-counts="true" data-query-type="or" data-heading="Filter by Color" data-heading-level="3"><span aria-hidden="true" class="wc-block-product-attribute-filter__placeholder"></span></div><!-- /wp:woocommerce/attribute-filter --><!-- wp:woocommerce/attribute-filter {"attributeId":' . $this->attribute_ids['pa_size'] . ',"heading":"Filter by Size"} --><div class="wp-block-woocommerce-attribute-filter is-loading" data-attribute-id="' . $this->attribute_ids['pa_size'] . '" data-show-counts="true" data-query-type="or" data-heading="Filter by Size" data-heading-level="3"><span aria-hidden="true" class="wc-block-product-attribute-filter__placeholder"></span></div><!-- /wp:woocommerce/attribute-filter --><!-- wp:woocommerce/stock-filter --><div class="wp-block-woocommerce-stock-filter is-loading" data-show-counts="true" data-heading="Filter by stock status" data-heading-level="3"><span aria-hidden="true" class="wc-block-product-stock-filter__placeholder"></span></div><!-- /wp:woocommerce/stock-filter --></div><!-- /wp:column --><!-- wp:column {"width":"66.66%"} --><div class="wp-block-column" style="flex-basis:66.66%"><!-- wp:woocommerce/all-products {"columns":3,"rows":3,"alignButtons":false,"contentVisibility":{"orderBy":true},"orderby":"date","layoutConfig":[["woocommerce/product-image",{"imageSizing":"cropped"}],["woocommerce/product-title"],["woocommerce/product-price"],["woocommerce/product-rating"],["woocommerce/product-button"]]} --><div class="wp-block-woocommerce-all-products wc-block-all-products" data-attributes="{&quot;alignButtons&quot;:false,&quot;columns&quot;:3,&quot;contentVisibility&quot;:{&quot;orderBy&quot;:true},&quot;isPreview&quot;:false,&quot;layoutConfig&quot;:[[&quot;woocommerce/product-image&quot;,{&quot;imageSizing&quot;:&quot;cropped&quot;}],[&quot;woocommerce/product-title&quot;],[&quot;woocommerce/product-price&quot;],[&quot;woocommerce/product-rating&quot;],[&quot;woocommerce/product-button&quot;]],&quot;orderby&quot;:&quot;date&quot;,&quot;rows&quot;:3}"></div><!-- /wp:woocommerce/all-products --></div><!-- /wp:column --></div><!-- /wp:columns -->\''
-			);
-		} else {
-			WP_CLI::runcommand( 'post create --post_status=publish --post_title=\'Active Product Filters\' --post_content=\'<!-- wp:columns --><div class="wp-block-columns"><!-- wp:column {"width":"33.33%"} --><div class="wp-block-column" style="flex-basis:33.33%"><!-- wp:woocommerce/active-filters --><div class="wp-block-woocommerce-active-filters is-loading" data-display-style="list" data-heading="Active filters" data-heading-level="3"><span aria-hidden="true" class="wc-block-active-product-filters__placeholder"></span></div><!-- /wp:woocommerce/active-filters --><!-- wp:woocommerce/price-filter --><div class="wp-block-woocommerce-price-filter is-loading" data-showinputfields="true" data-showfilterbutton="false" data-heading="Filter by price" data-heading-level="3"><span aria-hidden="true" class="wc-block-product-categories__placeholder"></span></div><!-- /wp:woocommerce/price-filter --><!-- wp:woocommerce/stock-filter --><div class="wp-block-woocommerce-stock-filter is-loading" data-show-counts="true" data-heading="Filter by stock status" data-heading-level="3"><span aria-hidden="true" class="wc-block-product-stock-filter__placeholder"></span></div><!-- /wp:woocommerce/stock-filter --></div><!-- /wp:column --><!-- wp:column {"width":"66.66%"} --><div class="wp-block-column" style="flex-basis:66.66%"><!-- wp:woocommerce/all-products {"columns":3,"rows":3,"alignButtons":false,"contentVisibility":{"orderBy":true},"orderby":"date","layoutConfig":[["woocommerce/product-image",{"imageSizing":"cropped"}],["woocommerce/product-title"],["woocommerce/product-price"],["woocommerce/product-rating"],["woocommerce/product-button"]]} --><div class="wp-block-woocommerce-all-products wc-block-all-products" data-attributes="{&quot;alignButtons&quot;:false,&quot;columns&quot;:3,&quot;contentVisibility&quot;:{&quot;orderBy&quot;:true},&quot;isPreview&quot;:false,&quot;layoutConfig&quot;:[[&quot;woocommerce/product-image&quot;,{&quot;imageSizing&quot;:&quot;cropped&quot;}],[&quot;woocommerce/product-title&quot;],[&quot;woocommerce/product-price&quot;],[&quot;woocommerce/product-rating&quot;],[&quot;woocommerce/product-button&quot;]],&quot;orderby&quot;:&quot;date&quot;,&quot;rows&quot;:3}"></div><!-- /wp:woocommerce/all-products --></div><!-- /wp:column --></div><!-- /wp:columns -->\'' );
+		// Create a post for each file in the posts folder.
+		foreach ( $files as $file ) {
+			$content = file_get_contents( $post_folder . $file );
+			$post_title_without_extension = str_replace( '.html', '', $file );
+			$post_title = array_reduce(explode("-", $post_title_without_extension), function($carry, $item) {
+				return $carry . ucfirst($item) . " ";
+			}, "");
 		}
 
-		// Create Best Selling Products post.
-		WP_CLI::runcommand( 'post create --post_status=publish --post_title=\'Best Selling Products\' --post_content=\'<!-- wp:woocommerce/product-best-sellers /-->\'' );
+		WP_CLI::runcommand( 'post create --post_status=publish --post_title=\'' . $post_title . '\' --post_content=\''. $content . '\'' );
 
-		// Create Featured Category post.
-		WP_CLI::runcommand( 'post create --post_status=publish --post_title=\'Featured Category\' --post_content=\'<!-- wp:woocommerce/featured-category {"editMode":false,"categoryId":20} --><!-- wp:buttons --><div class="wp-block-buttons"><!-- wp:button {"align":"center"} --><div class="wp-block-button aligncenter"><a class="wp-block-button__link" href="http://wpcli.local/product-category/clothing/">Shop now</a></div><!-- /wp:button --></div><!-- /wp:buttons --><!-- /wp:woocommerce/featured-category -->\'' );
-
-		// Create Featured Product post.
-		WP_CLI::runcommand( 'post create --post_status=publish --post_title=\'Featured Product\' --post_content=\'<!-- wp:woocommerce/featured-product {"editMode":false,"productId":10} --><!-- wp:buttons --><div class="wp-block-buttons"><!-- wp:button {"align":"center"} --><div class="wp-block-button aligncenter"><a class="wp-block-button__link" href="http://wpcli.local/product/beanie/">Shop now</a></div><!-- /wp:button --></div><!-- /wp:buttons --><!-- /wp:woocommerce/featured-product -->\'' );
-
-		// Create Hand-picked Products post.
-		WP_CLI::runcommand( 'post create --post_status=publish --post_title=\'Hand-picked Products\' --post_content=\'<!-- wp:woocommerce/handpicked-products {"editMode":false,"products":[11,12,13]} /-->\'' );
-
-		// Create Newest Products post.
-		WP_CLI::runcommand( 'post create --post_status=publish --post_title=\'Newest Products\' --post_content=\'<!-- wp:woocommerce/product-new /-->\'' );
-
-		// Create On Sale Products post.
-		WP_CLI::runcommand( 'post create --post_status=publish --post_title=\'On Sale Products\' --post_content=\'<!-- wp:woocommerce/product-on-sale /-->\'' );
-
-		// Create Products by Category post.
-		WP_CLI::runcommand( 'post create --post_status=publish --post_title=\'Products by Category\' --post_content=\'<!-- wp:woocommerce/product-category {"categories":[17]} /-->\'' );
-
-		// Create Products by Tag post.
-		WP_CLI::runcommand( 'post create --post_status=publish --post_title=\'Products by Tag\' --post_content=\'<!-- wp:woocommerce/product-tag /-->\'' );
-
-		// Create Product Categories List post.
-		WP_CLI::runcommand( 'post create --post_status=publish --post_title=\'Product Categories List\' --post_content=\'<!-- wp:woocommerce/product-categories /-->\'' );
-
-		// Create Product Search post.
-		WP_CLI::runcommand( 'post create --post_status=publish --post_title=\'Product Search\' --post_content=\'<!-- wp:woocommerce/product-search {"formId":"wc-block-product-search-3"} /-->\'' );
-
-		// Create Reviews by Category post.
-		WP_CLI::runcommand( 'post create --post_status=publish --post_title=\'Reviews by Category\' --post_content=\'<!-- wp:woocommerce/reviews-by-category {"editMode":false,"categoryIds":[18]} --><div class="wp-block-woocommerce-reviews-by-category wc-block-reviews-by-category has-image has-name has-date has-rating has-content has-product-name" data-image-type="reviewer" data-orderby="most-recent" data-reviews-on-page-load="10" data-reviews-on-load-more="10" data-show-load-more="true" data-show-orderby="true" data-category-ids="18"></div><!-- /wp:woocommerce/reviews-by-category -->\'' );
-
-		// Create Reviews by Product post.
-		WP_CLI::runcommand( 'post create --post_status=publish --post_title=\'Reviews by Product\' --post_content=\'<!-- wp:woocommerce/reviews-by-product {"editMode":false,"productId":27} --><div class="wp-block-woocommerce-reviews-by-product wc-block-reviews-by-product has-image has-name has-date has-rating has-content" data-image-type="reviewer" data-orderby="most-recent" data-reviews-on-page-load="10" data-reviews-on-load-more="10" data-show-load-more="true" data-show-orderby="true" data-product-id="27"></div><!-- /wp:woocommerce/reviews-by-product -->\'' );
 
 		// Create Top Rated Products post.
 		WP_CLI::runcommand( 'post create --post_status=publish --post_title=\'Top Rated Products\' --post_content=\'<!-- wp:woocommerce/product-top-rated /-->\'' );
