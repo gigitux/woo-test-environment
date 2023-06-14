@@ -82,19 +82,19 @@ class WooCommerce_Blocks_Testing_Environment extends WP_CLI_Command {
 
 		WP_CLI::log( 'Set up WooCommerce Blocks Testing Environment ...' );
 
-		$this->setupPlugins( $assoc_args );
-		$this->setupThemes( $assoc_args );
-		$this->emptySite();
-		$this->setupProducts();
-		$this->setupPages();
+		// $this->setupPlugins( $assoc_args );
+		// $this->setupThemes( $assoc_args );
+		// $this->emptySite();
+		// $this->setupProducts();
+		// $this->setupPages();
 		$this->setupPosts();
-		$this->setupSidebar();
-		$this->setupShipping();
-		$this->setupPayments( $assoc_args );
-		$this->setupTax();
-		$this->setupCoupons();
-		$this->setupReviews();
-		$this->setupPermalinks();
+		// $this->setupSidebar();
+		// $this->setupShipping();
+		// $this->setupPayments( $assoc_args );
+		// $this->setupTax();
+		// $this->setupCoupons();
+		// $this->setupReviews();
+		// $this->setupPermalinks();
 
 		WP_CLI::success( 'WooCommerce Blocks Testing Environment successfully set up.' );
 	}
